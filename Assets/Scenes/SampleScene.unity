@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &429146096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 183669219801727982, guid: abfce1179b079e940b180197a34e94e6, type: 3}
+  m_PrefabInstance: {fileID: 953095085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &477845177 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 183669219801727982, guid: abfce1179b079e940b180197a34e94e6, type: 3}
+  m_PrefabInstance: {fileID: 579591738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &505166606
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +249,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _questionTextField: {fileID: 1148124067}
+  _answerButtons:
+  - {fileID: 1864386469}
+  - {fileID: 429146096}
+  - {fileID: 1401543725}
+  - {fileID: 477845177}
   _question: {fileID: 11400000, guid: 81c0354ac2494cc46adb1683bbbe9751, type: 2}
 --- !u!1 &519420028
 GameObject:
@@ -615,6 +630,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Answer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 183669219801727982, guid: abfce1179b079e940b180197a34e94e6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5380233939343017885, guid: abfce1179b079e940b180197a34e94e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -978,6 +997,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386452243}
   m_CullTransparentMesh: 1
+--- !u!1 &1401543725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 183669219801727982, guid: abfce1179b079e940b180197a34e94e6, type: 3}
+  m_PrefabInstance: {fileID: 1827331696}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1606368168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,9 +1137,9 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -20
+  m_Spacing: -10
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -1208,6 +1232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Answer (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 183669219801727982, guid: abfce1179b079e940b180197a34e94e6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5380233939343017885, guid: abfce1179b079e940b180197a34e94e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1298,6 +1326,11 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5380233939343017885, guid: abfce1179b079e940b180197a34e94e6, type: 3}
   m_PrefabInstance: {fileID: 1827331696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1864386469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 183669219801727982, guid: abfce1179b079e940b180197a34e94e6, type: 3}
+  m_PrefabInstance: {fileID: 6552949109093107921}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1959550936
 GameObject:
