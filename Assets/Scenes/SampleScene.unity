@@ -886,7 +886,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUIZ GAME
+  m_text: GEO QUIZ
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 228d529158b366548b98b309bf81d510, type: 2}
   m_sharedMaterial: {fileID: 9076565790254850742, guid: 228d529158b366548b98b309bf81d510, type: 2}
