@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Question 2
   m_EditorClassIdentifier: 
   _question: Which country is the largest one?
+  _answers:
+  - China
+  - Canada
+  - The United States of America
+  - The Russian Federation
+  _correctAnswerIndex: 3

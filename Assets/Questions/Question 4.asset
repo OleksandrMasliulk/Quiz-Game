@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Question 4
   m_EditorClassIdentifier: 
   _question: How many named oceans are there on Earth?
+  _answers:
+  - 1
+  - 3
+  - 5
+  - 4
+  _correctAnswerIndex: 2

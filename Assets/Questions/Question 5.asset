@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Question 5
   m_EditorClassIdentifier: 
   _question: The highest mountain is...
+  _answers:
+  - Mount Everest
+  - Kilimanjaro
+  - Chogori
+  - Mount Fuji
+  _correctAnswerIndex: 0

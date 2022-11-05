@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Question 1
   m_EditorClassIdentifier: 
   _question: How many continents are there on Earth?
+  _answers:
+  - 4
+  - 7
+  - 6
+  - 5
+  _correctAnswerIndex: 1
