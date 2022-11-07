@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     private bool _isAnsweringQuestion = true;
 
     private float _timerValue;
+    public float FillFraction { get; private set; }
 
     private void Start() 
     {
@@ -36,8 +37,8 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            float fillFraction = CalculateFillFraction();
-            Debug.Log($"{_timerValue} = {(int)(fillFraction * 100)}%");
+            CalculateFillFraction();
+            Debug.Log($"{_timerValue} = {(int)(FillFraction * 100)}%");
         }
     }
 
@@ -50,19 +51,20 @@ public class Timer : MonoBehaviour
         }
         else
         {
+            loadNextQuestion = false;
             _timerValue = _timeToShowCorrectAnswer;
         }
     }
 
-    private float CalculateFillFraction() 
+    private void CalculateFillFraction() 
     {
         if (_isAnsweringQuestion)
         {
-            return _timerValue / _timeToAnswerQuestion;
+            FillFraction = _timerValue / _timeToAnswerQuestion;
         }
         else
         {
-            return _timerValue / _timeToShowCorrectAnswer;
+            FillFraction =  _timerValue / _timeToShowCorrectAnswer;
         }
     }
 }
