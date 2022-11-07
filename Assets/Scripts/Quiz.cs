@@ -29,8 +29,11 @@ public class Quiz : MonoBehaviour
     [Header("Progress Bar")]
     [SerializeField] private Slider _progressBar;
 
-    private bool _hasAnsweredEarly = false;
+    [Header("Win Screen")]
+    [SerializeField] private GameObject _winScreen;
     public bool _isComplete = false;
+
+    private bool _hasAnsweredEarly = false;
 
     private void Awake() 
     {
@@ -62,13 +65,17 @@ public class Quiz : MonoBehaviour
     private void GetNextQuestion() 
     {
         if (_isComplete)
-            return;
-
-        GetRandomQuestion();
-        SetButtonsState(true);
-        SetDefaultButtonSprites();
-        SetupQuestion();
-        _scoreKeeper.IncrementQuestionsSeen();
+        {
+            GameComplete();
+        }
+        else
+        {
+            GetRandomQuestion();
+            SetButtonsState(true);
+            SetDefaultButtonSprites();
+            SetupQuestion();
+            _scoreKeeper.IncrementQuestionsSeen();
+        }
     }
 
     private void GetRandomQuestion() 
@@ -159,5 +166,11 @@ public class Quiz : MonoBehaviour
         {
             _isComplete = true;
         }
+    }
+
+    private void GameComplete() 
+    {
+        _winScreen.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 }
