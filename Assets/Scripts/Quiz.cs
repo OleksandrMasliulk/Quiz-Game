@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -5,7 +6,8 @@ using UnityEngine.UI;
 public class Quiz : MonoBehaviour
 {
     [Header("Question")]
-    [SerializeField] QuestionSO _question;
+    [SerializeField] private List<QuestionSO> _questions;
+    QuestionSO _currentQuestion;
     [SerializeField] private TextMeshProUGUI _questionTextField;
 
     [Header("Answers")]
@@ -29,7 +31,7 @@ public class Quiz : MonoBehaviour
 
     void Start()
     {
-        GetNextQuestion();
+        //_currentQuestion = _questions[0];
         //SetupQuestion();
     }
 
@@ -51,9 +53,24 @@ public class Quiz : MonoBehaviour
 
     private void GetNextQuestion() 
     {
+        if (_questions.Count <= 0)
+            return;
+
+        GetRandomQuestion();
         SetButtonsState(true);
         SetDefaultButtonSprites();
         SetupQuestion();
+    }
+
+    private void GetRandomQuestion() 
+    {
+        int rand = Random.Range(0, _questions.Count);
+        _currentQuestion = _questions[rand];
+
+        if (_questions.Contains(_currentQuestion))
+        {
+            _questions.Remove(_currentQuestion);
+        }
     }
 
     public void OnAnswerSelected(int index) 
@@ -67,7 +84,7 @@ public class Quiz : MonoBehaviour
     private void ShowAnswer(int index) 
     {
         Image buttonImage;
-        if (index == _question.CorrectAnswerIndex) 
+        if (index == _currentQuestion.CorrectAnswerIndex) 
         {
             _questionTextField.text = "Correct!";
             buttonImage = _answerButtons[index].GetComponent<Image>();
@@ -75,8 +92,8 @@ public class Quiz : MonoBehaviour
         }
         else
         {
-            int correctAnswerIndex = _question.CorrectAnswerIndex;
-            string correctAnswerText = _question.GetAnswer(correctAnswerIndex);
+            int correctAnswerIndex = _currentQuestion.CorrectAnswerIndex;
+            string correctAnswerText = _currentQuestion.GetAnswer(correctAnswerIndex);
             _questionTextField.text = $"The correct answer was:\n{correctAnswerText}";
             if (_hasAnsweredEarly) 
             {
@@ -90,11 +107,11 @@ public class Quiz : MonoBehaviour
 
     private void SetupQuestion() 
     {
-        _questionTextField.text = _question.Question;
+        _questionTextField.text = _currentQuestion.Question;
 
         for (int i = 0; i < _answerButtons.Length; i++) 
         {
-            _answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = _question.GetAnswer(i);
+            _answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = _currentQuestion.GetAnswer(i);
         }
     }
 

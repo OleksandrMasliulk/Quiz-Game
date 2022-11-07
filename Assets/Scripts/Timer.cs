@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private float _timeToShowCorrectAnswer;
 
     public bool loadNextQuestion;
-    private bool _isAnsweringQuestion = true;
+    private bool _isAnsweringQuestion;
     public bool IsAnsweringQuestion => _isAnsweringQuestion;
 
     private float _timerValue;
@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
 
     private void Start() 
     {
-        SetupTimer();
+        //SetupTimer();
     }
 
     private void Update() 
@@ -39,7 +39,6 @@ public class Timer : MonoBehaviour
         else
         {
             CalculateFillFraction();
-            Debug.Log($"{_timerValue} = {(int)(FillFraction * 100)}%");
         }
     }
 

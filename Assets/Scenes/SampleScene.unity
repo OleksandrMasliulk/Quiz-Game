@@ -249,7 +249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6dbe1b7a9358946806a6182cadc22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _question: {fileID: 11400000, guid: 81c0354ac2494cc46adb1683bbbe9751, type: 2}
+  _questions:
+  - {fileID: 11400000, guid: b784ad7a1b23062498e8800255994bc1, type: 2}
+  - {fileID: 11400000, guid: 6fdd38e72bd484e479e9dc2b3cbb4b4d, type: 2}
+  - {fileID: 11400000, guid: f1fd16784bacc944eacb7f396f6002e3, type: 2}
+  - {fileID: 11400000, guid: fb8eeba97ad261d4c8b4f848b50bb514, type: 2}
+  - {fileID: 11400000, guid: 81c0354ac2494cc46adb1683bbbe9751, type: 2}
   _questionTextField: {fileID: 1148124067}
   _answerButtons:
   - {fileID: 1864386469}
@@ -644,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3746dd03508474bba12ec3cde18486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToAnswerQuestion: 30
+  _timeToAnswerQuestion: 20
   _timeToShowCorrectAnswer: 5
   loadNextQuestion: 0
 --- !u!1 &937649962
