@@ -20,6 +20,8 @@ public class Quiz : MonoBehaviour
     [SerializeField] private Image _timerImage;
     private Timer _timer;
 
+    private bool _hasAnsweredEarly = false;
+
     private void Awake() 
     {
         _timer = FindObjectOfType<Timer>();
@@ -36,18 +38,14 @@ public class Quiz : MonoBehaviour
         _timerImage.fillAmount = _timer.FillFraction;
         if (_timer.loadNextQuestion) 
         {
+            _hasAnsweredEarly = false;
             GetNextQuestion();
             _timer.loadNextQuestion = false;
         }
-    }
-
-    private void SetupQuestion() 
-    {
-        _questionTextField.text = _question.Question;
-
-        for (int i = 0; i < _answerButtons.Length; i++) 
+        else if (!_hasAnsweredEarly && !_timer.IsAnsweringQuestion)
         {
-            _answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = _question.GetAnswer(i);
+            ShowAnswer(-1);
+            SetButtonsState(false);
         }
     }
 
@@ -60,10 +58,19 @@ public class Quiz : MonoBehaviour
 
     public void OnAnswerSelected(int index) 
     {
-        Image buttonImage = _answerButtons[index].GetComponent<Image>();
+        _hasAnsweredEarly = true;
+        ShowAnswer(index);
+        SetButtonsState(false);
+        _timer.CancelTimer();
+    }
+
+    private void ShowAnswer(int index) 
+    {
+        Image buttonImage;
         if (index == _question.CorrectAnswerIndex) 
         {
             _questionTextField.text = "Correct!";
+            buttonImage = _answerButtons[index].GetComponent<Image>();
             buttonImage.sprite = _correctButtonSprite;
         }
         else
@@ -71,12 +78,24 @@ public class Quiz : MonoBehaviour
             int correctAnswerIndex = _question.CorrectAnswerIndex;
             string correctAnswerText = _question.GetAnswer(correctAnswerIndex);
             _questionTextField.text = $"The correct answer was:\n{correctAnswerText}";
-            buttonImage.sprite = _wrongButtonSprite;
+            if (_hasAnsweredEarly) 
+            {
+                buttonImage = _answerButtons[index].GetComponent<Image>();
+                buttonImage.sprite = _wrongButtonSprite;
+            }
             Image correctButtonImage = _answerButtons[correctAnswerIndex].GetComponent<Image>();
             correctButtonImage.sprite = _correctButtonSprite;
         }
-        SetButtonsState(false);
-        _timer.CancelTimer();
+    }
+
+    private void SetupQuestion() 
+    {
+        _questionTextField.text = _question.Question;
+
+        for (int i = 0; i < _answerButtons.Length; i++) 
+        {
+            _answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = _question.GetAnswer(i);
+        }
     }
 
     private void SetButtonsState(bool state) 

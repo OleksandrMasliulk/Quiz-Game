@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
 
     public bool loadNextQuestion;
     private bool _isAnsweringQuestion = true;
+    public bool IsAnsweringQuestion => _isAnsweringQuestion;
 
     private float _timerValue;
     public float FillFraction { get; private set; }
@@ -51,7 +52,6 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            loadNextQuestion = false;
             _timerValue = _timeToShowCorrectAnswer;
         }
     }
