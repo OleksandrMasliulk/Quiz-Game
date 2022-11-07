@@ -29,11 +29,10 @@ public class Quiz : MonoBehaviour
     [Header("Progress Bar")]
     [SerializeField] private Slider _progressBar;
 
-    [Header("Win Screen")]
-    [SerializeField] private GameObject _winScreen;
-    public bool _isComplete = false;
+    private bool _isComplete = false;
+    public bool IsComplete => _isComplete;
 
-    private bool _hasAnsweredEarly = false;
+    private bool _hasAnsweredEarly = true;
 
     private void Awake() 
     {
@@ -64,18 +63,21 @@ public class Quiz : MonoBehaviour
 
     private void GetNextQuestion() 
     {
+        if (_progressBar.value == _progressBar.maxValue) 
+        {
+            _isComplete = true;
+        }
+
         if (_isComplete)
         {
-            GameComplete();
+            return;
         }
-        else
-        {
-            GetRandomQuestion();
-            SetButtonsState(true);
-            SetDefaultButtonSprites();
-            SetupQuestion();
-            _scoreKeeper.IncrementQuestionsSeen();
-        }
+
+        GetRandomQuestion();
+        SetButtonsState(true);
+        SetDefaultButtonSprites();
+        SetupQuestion();
+        _scoreKeeper.IncrementQuestionsSeen();
     }
 
     private void GetRandomQuestion() 
@@ -162,15 +164,5 @@ public class Quiz : MonoBehaviour
     private void UpdateProgressBar() 
     {
         _progressBar.value = _scoreKeeper.QuestionsSeen;
-        if (_progressBar.value == _progressBar.maxValue) 
-        {
-            _isComplete = true;
-        }
-    }
-
-    private void GameComplete() 
-    {
-        _winScreen.SetActive(true);
-        this.gameObject.SetActive(false);
     }
 }

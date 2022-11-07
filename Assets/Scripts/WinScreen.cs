@@ -12,9 +12,9 @@ public class WinScreen : MonoBehaviour
         _scoreKeeper = FindObjectOfType<ScoreKeeper>(true);
     }
     
-    public void OnEnable() 
+    public void ShowScore() 
     {
-        _congratulationsText.text += $"\nYou scored {_scoreKeeper.CalculateScore()}%";
+        _congratulationsText.text = $"Congratulations!\nYou scored {_scoreKeeper.CalculateScore()}%";
     }
 
     public void Restart() 
