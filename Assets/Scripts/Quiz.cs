@@ -26,7 +26,11 @@ public class Quiz : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText;
     private ScoreKeeper _scoreKeeper;
 
+    [Header("Progress Bar")]
+    [SerializeField] private Slider _progressBar;
+
     private bool _hasAnsweredEarly = false;
+    public bool _isComplete = false;
 
     private void Awake() 
     {
@@ -36,8 +40,7 @@ public class Quiz : MonoBehaviour
 
     void Start()
     {
-        //_currentQuestion = _questions[0];
-        //SetupQuestion();
+        SetupProgressBar();
     }
 
     private void Update() 
@@ -58,7 +61,7 @@ public class Quiz : MonoBehaviour
 
     private void GetNextQuestion() 
     {
-        if (_questions.Count <= 0)
+        if (_isComplete)
             return;
 
         GetRandomQuestion();
@@ -112,6 +115,7 @@ public class Quiz : MonoBehaviour
         }
 
         _scoreText.text = $"Score: {_scoreKeeper.CalculateScore()}%";
+        UpdateProgressBar();
     }
 
     private void SetupQuestion() 
@@ -139,6 +143,21 @@ public class Quiz : MonoBehaviour
         {
             Image image = go.GetComponent<Image>();
             image.sprite = _defaultButtonSprite;
+        }
+    }
+
+    private void SetupProgressBar() 
+    {
+        _progressBar.maxValue = _questions.Count;
+        _progressBar.value = 0;
+    }
+
+    private void UpdateProgressBar() 
+    {
+        _progressBar.value = _scoreKeeper.QuestionsSeen;
+        if (_progressBar.value == _progressBar.maxValue) 
+        {
+            _isComplete = true;
         }
     }
 }
